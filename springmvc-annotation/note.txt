@@ -1,30 +1,32 @@
-1¡¢webÈİÆ÷ÔÚÆô¶¯µÄÊ±ºò£¬»áÉ¨ÃèÃ¿¸öjar°üÏÂµÄMETA-INF/services/javax.servlet.ServletContainerInitializer
-2¡¢¼ÓÔØÕâ¸öÎÄ¼şÖ¸¶¨µÄÀàSpringServletContainerInitializer
-3¡¢springµÄÓ¦ÓÃÒ»Æô¶¯»á¼ÓÔØ¸ĞĞËÈ¤µÄWebApplicationInitializer½Ó¿ÚµÄÏÂµÄËùÓĞ×é¼ş£»
-4¡¢²¢ÇÒÎªWebApplicationInitializer×é¼ş´´½¨¶ÔÏó£¨×é¼ş²»ÊÇ½Ó¿Ú£¬²»ÊÇ³éÏóÀà£©
-	1£©¡¢AbstractContextLoaderInitializer£º´´½¨¸ùÈİÆ÷£»createRootApplicationContext()£»
-	2£©¡¢AbstractDispatcherServletInitializer£º
-			´´½¨Ò»¸öwebµÄiocÈİÆ÷£»createServletApplicationContext();
-			´´½¨ÁËDispatcherServlet£»createDispatcherServlet()£»
-			½«´´½¨µÄDispatcherServletÌí¼Óµ½ServletContextÖĞ£»
+1ã€webå®¹å™¨åœ¨å¯åŠ¨çš„æ—¶å€™ï¼Œä¼šæ‰«ææ¯ä¸ªjaråŒ…ä¸‹çš„META-INF/services/javax.servlet.ServletContainerInitializer
+2ã€åŠ è½½è¿™ä¸ªæ–‡ä»¶æŒ‡å®šçš„ç±»SpringServletContainerInitializer
+3ã€springçš„åº”ç”¨ä¸€å¯åŠ¨ä¼šåŠ è½½æ„Ÿå…´è¶£çš„WebApplicationInitializeræ¥å£çš„ä¸‹çš„æ‰€æœ‰ç»„ä»¶ï¼›
+4ã€å¹¶ä¸”ä¸ºWebApplicationInitializerç»„ä»¶åˆ›å»ºå¯¹è±¡ï¼ˆç»„ä»¶ä¸æ˜¯æ¥å£ï¼Œä¸æ˜¯æŠ½è±¡ç±»ï¼‰
+	1ï¼‰ã€AbstractContextLoaderInitializerï¼šåˆ›å»ºæ ¹å®¹å™¨ï¼›createRootApplicationContext()ï¼›
+	2ï¼‰ã€AbstractDispatcherServletInitializerï¼š
+			åˆ›å»ºä¸€ä¸ªwebçš„iocå®¹å™¨ï¼›createServletApplicationContext();
+			åˆ›å»ºäº†DispatcherServletï¼›createDispatcherServlet()ï¼›
+			å°†åˆ›å»ºçš„DispatcherServletæ·»åŠ åˆ°ServletContextä¸­ï¼›
 				getServletMappings();
-	3£©¡¢AbstractAnnotationConfigDispatcherServletInitializer£º×¢½â·½Ê½ÅäÖÃµÄDispatcherServlet³õÊ¼»¯Æ÷
-			´´½¨¸ùÈİÆ÷£ºcreateRootApplicationContext()
-					getRootConfigClasses();´«ÈëÒ»¸öÅäÖÃÀà
-			´´½¨webµÄiocÈİÆ÷£º createServletApplicationContext();
-					»ñÈ¡ÅäÖÃÀà£»getServletConfigClasses();
-	
-×Ü½á£º
-	ÒÔ×¢½â·½Ê½À´Æô¶¯SpringMVC£»¼Ì³ĞAbstractAnnotationConfigDispatcherServletInitializer£»
-ÊµÏÖ³éÏó·½·¨Ö¸¶¨DispatcherServletµÄÅäÖÃĞÅÏ¢£»
+	3ï¼‰ã€AbstractAnnotationConfigDispatcherServletInitializerï¼šæ³¨è§£æ–¹å¼é…ç½®çš„DispatcherServletåˆå§‹åŒ–å™¨
+			åˆ›å»ºæ ¹å®¹å™¨ï¼šcreateRootApplicationContext()
+					getRootConfigClasses();ä¼ å…¥ä¸€ä¸ªé…ç½®ç±»
+			åˆ›å»ºwebçš„iocå®¹å™¨ï¼š createServletApplicationContext();
+					è·å–é…ç½®ç±»ï¼›getServletConfigClasses();
+
+æ€»ç»“ï¼š
+	ä»¥æ³¨è§£æ–¹å¼æ¥å¯åŠ¨SpringMVCï¼›ç»§æ‰¿AbstractAnnotationConfigDispatcherServletInitializerï¼›
+å®ç°æŠ½è±¡æ–¹æ³•æŒ‡å®šDispatcherServletçš„é…ç½®ä¿¡æ¯ï¼›
 
 ===========================
-¶¨ÖÆSpringMVC£»
-1£©¡¢@EnableWebMvc:¿ªÆôSpringMVC¶¨ÖÆÅäÖÃ¹¦ÄÜ£»
-	<mvc:annotation-driven/>£»
+å®šåˆ¶SpringMVCï¼›
+1ï¼‰ã€@EnableWebMvc:å¼€å¯SpringMVCå®šåˆ¶é…ç½®åŠŸèƒ½ï¼›
+	<mvc:annotation-driven/>ï¼›
 
-2£©¡¢ÅäÖÃ×é¼ş£¨ÊÓÍ¼½âÎöÆ÷¡¢ÊÓÍ¼Ó³Éä¡¢¾²Ì¬×ÊÔ´Ó³Éä¡¢À¹½ØÆ÷¡£¡£¡££©
+2ï¼‰ã€é…ç½®ç»„ä»¶ï¼ˆè§†å›¾è§£æå™¨ã€è§†å›¾æ˜ å°„ã€é™æ€èµ„æºæ˜ å°„ã€æ‹¦æˆªå™¨ã€‚ã€‚ã€‚ï¼‰
 	extends WebMvcConfigurerAdapter
+
+
 
 
 
