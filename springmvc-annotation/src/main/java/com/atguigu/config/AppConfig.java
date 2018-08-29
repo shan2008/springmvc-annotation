@@ -3,9 +3,8 @@ package com.atguigu.config;
 
 import java.util.List;
 
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.*;
 import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,9 @@ import org.springframework.validation.MessageCodesResolver;
 import org.springframework.validation.Validator;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -31,36 +33,45 @@ import com.atguigu.controller.MyFirstInterceptor;
 
 //SpringMVC只扫描Controller；子容器
 //useDefaultFilters=false 禁用默认的过滤规则；
-@ComponentScan(value="com.atguigu",includeFilters={
-		@Filter(type=FilterType.ANNOTATION,classes={Controller.class})
-},useDefaultFilters=false)
+@ComponentScan(value = "com.atguigu", includeFilters = {
+        @Filter(type = FilterType.ANNOTATION, classes = {Controller.class})
+}, useDefaultFilters = false)
 @EnableWebMvc
-public class AppConfig  extends WebMvcConfigurerAdapter  {
+@Configuration
+public class AppConfig extends WebMvcConfigurerAdapter {
 
-	//定制
-	
-	//视图解析器
-	@Override
-	public void configureViewResolvers(ViewResolverRegistry registry) {
-		// TODO Auto-generated method stub
-		//默认所有的页面都从 /WEB-INF/ xxx .jsp
-		//registry.jsp();
-		registry.jsp("/WEB-INF/views/", ".jsp");
-	}
-	
-	//静态资源访问
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		// TODO Auto-generated method stub
-		configurer.enable();
-	}
-	
-	//拦截器
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		// TODO Auto-generated method stub
-		//super.addInterceptors(registry);
-		registry.addInterceptor(new MyFirstInterceptor()).addPathPatterns("/**");
-	}
+    //定制
+
+    //视图解析器
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        // TODO Auto-generated method stub
+        //默认所有的页面都从 /WEB-INF/ xxx .jsp
+        //registry.jsp();
+        registry.jsp("/WEB-INF/views/", ".jsp");
+    }
+
+    //静态资源访问
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        // TODO Auto-generated method stub
+        configurer.enable();
+    }
+
+    //拦截器
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // TODO Auto-generated method stub
+        //super.addInterceptors(registry);
+        registry.addInterceptor(new MyFirstInterceptor()).addPathPatterns("/**");
+    }
+
+
+    // 文件上传配置&大小小在
+    @Bean
+    public MultipartResolver multipartResolver() {
+		 return  new StandardServletMultipartResolver();
+    }
+
 
 }
