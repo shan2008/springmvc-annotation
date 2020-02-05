@@ -6,22 +6,22 @@ import java.util.concurrent.Callable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.request.async.DeferredResult;
 
 import com.atguigu.service.DeferredResultQueue;
+import org.springframework.web.servlet.DispatcherServlet;
 
 
 @Controller
 public class AsyncController {
-	
-	
 	@ResponseBody
 	@RequestMapping("/createOrder")
 	public DeferredResult<Object> createOrder(){
 		DeferredResult<Object> deferredResult = new DeferredResult<>((long)3000, "create fail...");
 			
 		DeferredResultQueue.save(deferredResult);
-		
+
 		return deferredResult;
 	}
 	
@@ -77,7 +77,7 @@ public class AsyncController {
 				return "Callable<String> async01()";
 			}
 		};
-		
+
 		System.out.println("主线程结束..."+Thread.currentThread()+"==>"+System.currentTimeMillis());
 		return callable;
 	}
